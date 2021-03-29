@@ -2,5 +2,7 @@ FROM alpine:latest
 
 RUN apk update && apk add bash
 
-ADD ./dist/web-linux-amd64 app
-ADD ./configs/web.yml .
+ENV APP_NAME web
+COPY ./dist/web_linux_amd64/web app
+COPY ./configs/web.yml.example config.yml
+CMD ["./app", "-f", "config.yml"]

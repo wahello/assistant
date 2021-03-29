@@ -2,5 +2,7 @@ FROM alpine:latest
 
 RUN apk update && apk add bash
 
-ADD ./dist/cron-linux-amd64 app
-ADD ./configs/cron.yml .
+ENV APP_NAME cron
+COPY ./dist/cron_linux_amd64/cron app
+COPY ./configs/cron.yml.example config.yml
+CMD ["./app", "-f", "config.yml"]

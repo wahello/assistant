@@ -44,6 +44,14 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Build and push cron
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          file: build/cron/Dockerfile
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/cron:${{ github.sha }}
+
       - name: Build and push gateway
         uses: docker/build-push-action@v2
         with:
@@ -59,3 +67,59 @@ jobs:
           push: true
           file: build/message/Dockerfile
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/message:${{ github.sha }}
+
+      - name: Build and push middle
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          file: build/middle/Dockerfile
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/middle:${{ github.sha }}
+
+      - name: Build and push spider
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          file: build/spider/Dockerfile
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/spider:${{ github.sha }}
+
+      - name: Build and push subscribe
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          file: build/subscribe/Dockerfile
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/subscribe:${{ github.sha }}
+
+      - name: Build and push task
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          file: build/task/Dockerfile
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/task:${{ github.sha }}
+
+      - name: Build and push web
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          file: build/web/Dockerfile
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/web:${{ github.sha }}
+
+      - name: Build and push worker
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          file: build/worker/Dockerfile
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/worker:${{ github.sha }}
+
+      - name: Build and push workflow
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          file: build/workflow/Dockerfile
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/workflow:${{ github.sha }}
