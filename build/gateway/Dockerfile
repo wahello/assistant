@@ -2,5 +2,7 @@ FROM alpine:latest
 
 RUN apk update && apk add bash
 
-ADD ./dist/gateway-linux-amd64 app
-ADD ./configs/gateway.yml .
+ENV APP_NAME gateway
+COPY ./dist/gateway_linux_amd64/gateway app
+COPY ./configs/gateway.yml config.yml
+CMD ["./app", "-f", "config.yml"]
